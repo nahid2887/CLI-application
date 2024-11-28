@@ -51,7 +51,7 @@ Welcome to the **Employee Management System** — your one-stop solution to mana
 
 1. Clone the project like a pro:  
    ```bash  
-   git clone https://github.com/<your-username>/employee-management-system.git
+   git clone https://github.com/<your-username>/CLI-application.git
 
   Additional install the required dependencies 
  
