@@ -1,0 +1,30 @@
+[
+    {
+        "emp_id": "1",
+        "name": "Nahid",
+        "designation": "Jr Developer",
+        "number": "01726930828",
+        "salary": "15000.0"
+    },
+    {
+        "emp_id": "2",
+        "name": "Siam",
+        "designation": "Jr Developer",
+        "number": "01892147937",
+        "salary": 15000.0
+    },
+    {
+        "emp_id": "3",
+        "name": "Joy",
+        "designation": "UI/UX designer",
+        "number": "01726367364",
+        "salary": 20000.0
+    },
+    {
+        "emp_id": "5",
+        "name": "Anamul",
+        "designation": "Hr",
+        "number": "01734694764",
+        "salary": 20000.0
+    }
+]

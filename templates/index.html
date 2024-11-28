@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLI application</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-blue-600 text-white py-5 text-center">
+        <h1 class="text-4xl font-semibold">CLI application</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container mx-auto mt-10 px-4">
+
+        <!-- Add Employee and Search Form -->
+        <div class="flex justify-between items-center mb-6">
+
+            <!-- Add Employee Button -->
+            <a href="{{ url_for('add_employee_route') }}" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                Add Employee
+            </a>
+
+            <!-- Search Form -->
+            <form action="{{ url_for('search_employee_route') }}" method="post" class="flex flex-grow items-center space-x-4">
+                <input type="text" name="keyword" placeholder="Search by name, designation" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
+                <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
+                    Search
+                </button>
+            </form>
+        </div>
+
+        <!-- View All Employees and Save to TXT Buttons -->
+        <div class="flex justify-between mb-6">
+            <button onclick="location.href='{{ url_for('view_all_employees_route') }}'" class="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition duration-300">
+                View All Employees
+            </button>
+            <button onclick="location.href='{{ url_for('save_all_route') }}'" class="bg-yellow-600 text-white py-2 px-4 rounded-lg hover:bg-yellow-700 transition duration-300">
+                Save All to TXT
+            </button>
+        </div>
+
+        <!-- Display Employees if search results are found -->
+        {% if employees %}
+            <h2 class="text-2xl font-semibold mb-4">Search Results:</h2>
+            <table class="min-w-full table-auto border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="px-4 py-2 border border-gray-300">ID</th>
+                        <th class="px-4 py-2 border border-gray-300">Name</th>
+                        <th class="px-4 py-2 border border-gray-300">Designation</th>
+                        <th class="px-4 py-2 border border-gray-300">Phone Number</th>
+                        <th class="px-4 py-2 border border-gray-300">Salary</th>
+                        <th class="px-4 py-2 border border-gray-300">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in employees %}
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-300">{{ employee.emp_id }}</td>
+                        <td class="px-4 py-2 border border-gray-300">{{ employee.name }}</td>
+                        <td class="px-4 py-2 border border-gray-300">{{ employee.designation }}</td>
+                        <td class="px-4 py-2 border border-gray-300">{{ employee.number }}</td>
+                        <td class="px-4 py-2 border border-gray-300">{{ employee.salary }}</td>
+                        <td class="px-4 py-2 border border-gray-300">
+                            <a href="{{ url_for('update_employee_route', emp_id=employee.emp_id) }}" class="text-blue-600 hover:underline">Update</a>
+                            <a href="{{ url_for('delete_employee_route', emp_id=employee.emp_id) }}" class="text-red-600 hover:underline ml-4">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="text-gray-600 mt-4">No employees found for your search.</p>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

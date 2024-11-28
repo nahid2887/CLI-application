@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Employees</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-blue-600 text-white py-5 text-center">
+        <h1 class="text-4xl font-semibold">All Employees</h1>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto mt-10 px-4">
+        <!-- Employees Table -->
+        <div class="overflow-x-auto bg-white rounded-lg shadow-lg">
+            <table class="min-w-full table-auto">
+                <thead>
+                    <tr class="bg-blue-500 text-white">
+                        <th class="px-4 py-2 border-b">ID</th>
+                        <th class="px-4 py-2 border-b">Name</th>
+                        <th class="px-4 py-2 border-b">Designation</th>
+                        <th class="px-4 py-2 border-b">Phone Number</th>
+                        <th class="px-4 py-2 border-b">Salary</th>
+                        <th class="px-4 py-2 border-b">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in employees %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-2 border-b">{{ employee.emp_id }}</td>
+                        <td class="px-4 py-2 border-b">{{ employee.name }}</td>
+                        <td class="px-4 py-2 border-b">{{ employee.designation }}</td>
+                        <td class="px-4 py-2 border-b">{{ employee.number }}</td>
+                        <td class="px-4 py-2 border-b">{{ employee.salary }}</td> <!-- Salary column added -->
+                        <td class="px-4 py-2 border-b space-x-2">
+                            <a href="{{ url_for('update_employee_route', emp_id=employee.emp_id) }}" class="text-yellow-600 hover:text-yellow-800 font-semibold">Update</a>
+                            <a href="{{ url_for('delete_employee_route', emp_id=employee.emp_id) }}" class="text-red-600 hover:text-red-800 font-semibold">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Back Button -->
+        <div class="mt-6 text-center">
+            <a href="{{ url_for('index') }}" class="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300">Back to Home</a>
+        </div>
+    </div>
+
+</body>
+</html>
